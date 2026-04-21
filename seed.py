@@ -60,6 +60,37 @@ else:
     print("  Superadmin 'admin' already exists — skipped.")
     admin_user = User.objects.get(username="admin")
 
+# Create sample staff accounts
+if not User.objects.filter(username="staff1").exists():
+    staff1_user = User.objects.create_user(
+        username="staff1",
+        password="password123",
+        first_name="John",
+        last_name="Doe",
+        email="staff1@swahilipothub.co.ke",
+    )
+    StaffProfile.objects.create(
+        user=staff1_user,
+        role="staff",
+        department=Department.objects.get(name="Technology"),
+    )
+    print("  Staff1 created: staff1 / password123")
+
+if not User.objects.filter(username="staff2").exists():
+    staff2_user = User.objects.create_user(
+        username="staff2",
+        password="password123",
+        first_name="Jane",
+        last_name="Smith",
+        email="staff2@swahilipothub.co.ke",
+    )
+    StaffProfile.objects.create(
+        user=staff2_user,
+        role="staff",
+        department=Department.objects.get(name="Finance"),
+    )
+    print("  Staff2 created: staff2 / password123")
+
 print()
 
 
